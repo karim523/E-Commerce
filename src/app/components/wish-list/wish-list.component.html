@@ -1,0 +1,25 @@
+<section class="bg-main-light rounded-4 shadow p-4 my-2 container">
+  <div class="d-flex justify-content-between align-items-center">
+    <h1 class="h2">My wish List</h1>
+  </div>
+
+  @for (item of wishListDetails(); track item.id ) {
+  <div class="row mb-2 border-bottom">
+    <div class="col-md-2">
+      <div>
+        <img [src]="item.imageCover" class="w-100" [alt]="item.title" />
+      </div>
+    </div>
+    <div class="col-md-10 d-flex justify-content-between align-items-center">
+      <div>
+        <h3 class="h5">{{ item.title }}</h3>
+        <p class="text-main">Price: {{ item.price | currency : "GBP" }}</p>
+        <button class="text-danger btn p-0" (click)="removeItem(item.id)">
+          <i class="fa-solid fa-trash"></i> Remove
+        </button>
+      </div>
+      <button class="btn-main" (click)="addCart(item.id)">Add To Cart</button>
+    </div>
+  </div>
+  }
+</section>

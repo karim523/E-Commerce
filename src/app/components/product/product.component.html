@@ -1,0 +1,61 @@
+<section>
+  <div class="pt-5">
+    <input
+      [(ngModel)]="text"
+      type="search"
+      placeholder="Search by Name...."
+      class="form-control w-75 mx-auto mt-5"
+    />
+  </div>
+  <div class="container mt-5">
+    <div class="row g-3">
+      @for (product of productsList() | search:text; track product.id) {
+
+      <div class="col-md-6 col-lg-3">
+        <div class="product border-0 p-2">
+          <div [routerLink]="['/details', product.id]">
+            <img
+              [src]="product.imageCover"
+              [alt]="product.title"
+              class="w-100"
+            />
+            <h3 class="small text-main">{{ product.category.name }}</h3>
+            <h4 class="h6 mt-3">{{ product.title.split(" ", 2).join() }}</h4>
+            <div class="d-flex justify-content-between align-items-center">
+              <span>{{ product.price | currency : "GBP" }} </span>
+              <div>
+                @for (item of [1,2,3,4,5].slice(0,product.ratingsAverage); track
+                $index) {
+                <span><i class="fas fa-star rating-color"></i></span>
+
+                } @if (product.ratingsAverage%1 !==0 ) {
+                <i class="fa-solid fa-star-half-stroke rating-color"></i>
+                }
+
+                <span class="text-muted">{{ product.ratingsAverage }}</span>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex justify-content-between align-items-center mt-3">
+            <button class="btn-main w-75 mx-auto" (click)="addCart(product.id)">
+              Add To Cart
+            </button>
+
+            <span
+              (click)="toggleWishList(product.id)"
+              (click)="addWishList(product.id)"
+              class="cursor-pointer"
+            >
+              <i
+                class="fa-solid fa-heart fa-2xl"
+                [ngStyle]="{ color: isActive(product.id) ? 'red' : 'black' }"
+              ></i>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      }
+    </div>
+  </div>
+</section>

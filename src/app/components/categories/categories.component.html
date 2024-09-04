@@ -1,0 +1,46 @@
+<section>
+  <div class="container my-3">
+    <div class="row g-3">
+      @for (cat of categoriesList(); track cat._id) {
+
+      <div class="col-md-4">
+        <div
+          class="product border rounded-1"
+          (click)="showSubCategory(cat._id, cat.name)"
+        >
+          <img
+            [src]="cat.image"
+            class="w-100 shadow"
+            height="350px"
+            [alt]="cat.name"
+          />
+          <h3 class="text-main my-3 text-center">{{ cat.name }}</h3>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</section>
+
+@if (subCategoriesList()) {
+
+<section>
+  <div class="container my-3">
+    @if(nameCat) {
+    <h2 class="text-center text-main">{{ nameCat }} subcategories</h2>
+
+    }
+
+    <div class="row g-3">
+      @for (subCat of subCategoriesList(); track subCat._id) {
+      <div class="col-md-4">
+        <h3 class="my-3 text-center product border border-1 py-4">
+          {{ subCat.name }}
+        </h3>
+      </div>
+
+      }
+    </div>
+  </div>
+</section>
+}

@@ -1,0 +1,56 @@
+<section>
+  <div class="container">
+    <h2 class="text-main text-center my-4">All Brands</h2>
+    <div class="row g-3 my-3">
+      @for (brang of brandsList(); track brang._id) {
+
+      <div class="col-md-3">
+        <div class="product border rounded-1" (click)="openModal(content)">
+          <img
+            [src]="brang.image"
+            class="w-75 d-block mx-auto"
+            height="200px"
+            [alt]="brang.name"
+          />
+          <h3 class="small mb-5 text-center">{{ brang.name }}</h3>
+        </div>
+      </div>
+
+      <ng-template #content let-modal>
+        <div class="modal-header">
+          <button
+            type="button"
+            class="btn-close"
+            aria-label="Close"
+            (click)="modal.dismiss('Cross click')"
+          ></button>
+        </div>
+        <div
+          class="modal-body d-flex justify-content-between align-items-center"
+        >
+          <div>
+            <h3 class="text-main text-center">{{ brang.name }}</h3>
+            <p>{{ brang.name }}</p>
+          </div>
+          <img
+            [src]="brang.image"
+            class="w-50 d-block"
+            height="150px"
+            [alt]="brang.name"
+          />
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            (click)="modal.dismiss('Close click')"
+          >
+            Close
+          </button>
+        </div>
+      </ng-template>
+
+      }
+    </div>
+  </div>
+</section>

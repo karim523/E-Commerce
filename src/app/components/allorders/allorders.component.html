@@ -1,0 +1,78 @@
+<section class="container my-4">
+  <h2 class="h3 mb-4">All Orders</h2>
+  @if (detailsAllOrders().length === 0) {
+  <div class="alert alert-warning" role="alert">No orders found.</div>
+  } @for (order of detailsAllOrders(); track order._id) {
+  <div class="card mb-4 p-4 border rounded shadow-sm">
+    <div class="card-body">
+      <h3 class="card-title">Order ID: {{ order._id }}</h3>
+
+      <div class="mb-3">
+        <h5 class="card-subtitle mb-2 text-muted">Shipping Address:</h5>
+        <p>Details: {{ order.shippingAddress.details }}</p>
+        <p>Phone: {{ order.shippingAddress.phone }}</p>
+        <p>City: {{ order.shippingAddress.city }}</p>
+      </div>
+
+      <div class="mb-3">
+        <h5 class="card-subtitle mb-2 text-muted">Payment Method:</h5>
+        <p>{{ order.paymentMethodType }}</p>
+      </div>
+
+      <div class="mb-3">
+        <h5 class="card-subtitle mb-2 text-muted">Status:</h5>
+        <p>Paid: {{ order.isPaid ? "Yes" : "No" }}</p>
+        <p>Delivered: {{ order.isDelivered ? "Yes" : "No" }}</p>
+      </div>
+
+      <div class="mb-3">
+        <h5 class="card-subtitle mb-2 text-muted">Order Details:</h5>
+        @for (item of order.cartItems; track item._id) {
+
+        <ul class="list-group">
+          <li class="list-group-item d-flex align-items-center">
+            <img
+              [src]="item.product.imageCover"
+              alt="{{ item.product.title }}"
+              class="img-thumbnail me-3"
+              width="100"
+            />
+            <div>
+              <h6 class="mb-1">{{ item.product.title }}</h6>
+              <p class="mb-1">Quantity: {{ item.count }}</p>
+              <p class="mb-1">Price: {{ item.price | currency : "GBP" }}</p>
+            </div>
+          </li>
+        </ul>
+
+        }
+      </div>
+
+      <div class="mb-3">
+        <p class="fw-bold">
+          Total Order Price: {{ order.totalOrderPrice | currency : "GBP" }}
+        </p>
+        <p>Tax Price: {{ order.taxPrice | currency : "GBP" }}</p>
+      </div>
+
+      <div class="mb-3">
+        <p>
+          <small class="text-muted"
+            >Created At: {{ order.createdAt | date : "short" }}</small
+          >
+        </p>
+        <p>
+          <small class="text-muted"
+            >Updated At: {{ order.updatedAt | date : "short" }}</small
+          >
+        </p>
+        <p>
+          <small class="text-muted"
+            >Paid At: {{ order.paidAt | date : "short" }}</small
+          >
+        </p>
+      </div>
+    </div>
+  </div>
+  }
+</section>
