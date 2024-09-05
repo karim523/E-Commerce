@@ -101,7 +101,7 @@ export const routes: Routes = [
         title: 'details',
       },
       {
-        path: '/allorders',
+        path: 'allorders',
         loadComponent: () =>
           import('./components/allorders/allorders.component').then(
             (c) => c.AllordersComponent

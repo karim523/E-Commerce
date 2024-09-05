@@ -39,7 +39,7 @@ export class RegisterComponent {
         ],
       ],
       email: [null, [Validators.required, Validators.email]],
-      password: [null, [Validators.required, Validators.pattern(/^\w{6,}$/)]],
+      password: [null, [Validators.required, Validators.pattern(/^(?=.*[A-Z])(?=.*\d)(?=.*[a-z])[A-Za-z\d]{6,9}$/)]],
       rePassword: [null, []],
       phone: [
         null,

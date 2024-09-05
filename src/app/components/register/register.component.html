@@ -97,7 +97,14 @@
         @if (registerForm.get('password')?.getError('required')) {
         <P class="m-0">password is required</P>} @else if
         (registerForm.get('password')?.getError('pattern')) {
-        <P class="m-0">must be at least 6 chars </P> }
+        <ul>
+          must be
+          <li>Start with a letter (either uppercase or lowercase).</li>
+          <li>Be between 6 and 9 characters in total.</li>
+          <li>Can only contain letters (A-Z or a-z) and numbers (0-9)</li>
+        </ul>
+
+        }
       </div>
       }
     </div>
