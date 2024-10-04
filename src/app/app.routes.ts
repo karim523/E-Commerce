@@ -44,7 +44,6 @@ export const routes: Routes = [
     canActivate: [authGuard],
     children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
-      { path: 'https://e-commerce-fresh-cart-dem.netlify.app/allorders', redirectTo: 'allorders', pathMatch: 'full' },
       {
         path: 'home',
         loadComponent: () =>

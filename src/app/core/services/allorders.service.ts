@@ -9,7 +9,7 @@ import { environment } from '../environments/environment';
 export class AllordersService {
   constructor(private readonly _HttpClient: HttpClient) {}
 
-  getAllOrders(id: string | null): Observable<any> {
+  getAllOrders(id: string ): Observable<any> {
     return this._HttpClient.get(
       `${environment.baseUrl}/api/v1/orders/user/${id}`
     );

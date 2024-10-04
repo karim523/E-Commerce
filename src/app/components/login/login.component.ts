@@ -39,7 +39,7 @@ export class LoginComponent {
         .setLoginForm(this.loginForm.value)
         .subscribe({
           next: (res) => {
-            console.log(res);
+            console.log(res); 
             if (res.message == 'success') {
               this.msgSucces = true;
               setTimeout(() => {

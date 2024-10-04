@@ -1,8 +1,6 @@
 import { isPlatformBrowser } from '@angular/common';
 import { inject, PLATFORM_ID } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import e from 'express';
-
 export const logedGuard: CanActivateFn = (route, state) => {
   const _Router = inject(Router);
   const _PLATFORM_ID = inject(PLATFORM_ID);
